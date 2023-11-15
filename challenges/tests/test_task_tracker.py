@@ -32,9 +32,19 @@ def test_list_tasks():
 
 def test_mark_complete():
     # does the list change (remove task)
+    tracker = TaskTracker()
+    tracker.add_task('A test task')
+    tracker.add_task('Another test task')
+    tracker.mark_complete('A test task')
+    assert tracker.list_tasks() == ['Another test task']
     
-    assert False
+    
 
 def test_mark_complete_nonexist_exception():
     # what happens if you try to complete something that doesn't exist?
-    assert False
+    tracker = TaskTracker()
+    with pytest.raises(Exception) as err:
+        tracker.mark_complete('A test task')
+    assert str(err.value) == 'Task does not exist.'
+    
+ 

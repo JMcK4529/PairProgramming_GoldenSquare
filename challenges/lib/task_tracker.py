@@ -26,4 +26,7 @@ class TaskTracker():
         return self.task_list
 
     def mark_complete(self, task):
-        pass
+        if task in self.task_list:
+            self.task_list.remove(task)
+        else:
+            raise Exception('Task does not exist.')
